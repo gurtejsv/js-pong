@@ -98,14 +98,6 @@ function stepBall() {
         clearInterval(interval);
         user.score += 1;
     }
-    // if (ball.y + ball.radius >= canvas.height) {
-    //     clearInterval(interval);
-    //     comp.score += 1;
-    // }
-    // if (ball.y - ball.radius <= 0) {
-    //     clearInterval(interval);
-    //     user.score += 1;
-    // }
     if (ball.y - ball.radius < user.y + user.height && ball.y + ball.radius > user.y && ball.x - ball.radius < user.x + user.width && ball.x + ball.radius > user.x) {
         ball.speedY = -ball.speedY;
     }
@@ -161,7 +153,6 @@ function drawUser() {
 }
 
 function render() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
     stepBall();
     stepComp();
     stepUser();
