@@ -90,19 +90,21 @@ function stepBall() {
     if (ball.x + ball.radius >= canvas.width || ball.x - ball.radius <= 0) {
         ball.speedX = -ball.speedX;
     }
-    if (ball.y + ball.radius > user.y && (ball.x + ball.radius < user.x || ball.x - ball.radius > user.x + user.width)) {
-        clearInterval(interval);
-        comp.score += 1;
+    if (ball.y - ball.radius < comp.y + comp.height) {
+        if (ball.x - ball.radius < comp.x + comp.width && ball.x + ball.radius > comp.x) {
+            ball.speedY = -ball.speedY;
+        } else {
+            clearInterval(interval);
+            user.score += 1;
+        }
     }
-    if (ball.y - ball.radius < comp.y + comp.height && (ball.x + ball.radius < comp.x || ball.x - ball.radius > comp.x + comp.width)) {
-        clearInterval(interval);
-        user.score += 1;
-    }
-    if (ball.y - ball.radius < user.y + user.height && ball.y + ball.radius > user.y && ball.x - ball.radius < user.x + user.width && ball.x + ball.radius > user.x) {
-        ball.speedY = -ball.speedY;
-    }
-    if (ball.y - ball.radius < comp.y + comp.height && ball.y + ball.radius > comp.y && ball.x - ball.radius < comp.x + comp.width && ball.x + ball.radius > comp.x) {
-        ball.speedY = -ball.speedY;
+    if (ball.y + ball.radius > user.y) {
+        if (ball.x - ball.radius < user.x + user.width && ball.x + ball.radius > user.x) {
+            ball.speedY = -ball.speedY;
+        } else {
+            clearInterval(interval);
+            comp.score += 1;
+        }
     }
     ball.x += ball.speedX;
     ball.y += ball.speedY;
